@@ -1,0 +1,17 @@
+
+###step1: convert excel file to csv file
+###step2: use mysql
+>mysql
+mysql > create database hireart;
+mysql > use hireart;
+% create a table named hireart
+mysql > CREATE TABLE hireart (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `account_manager` varchar(255) COLLATE utf8_unicode_ci  DEFAULT NULL,
+ `client_name` varchar(255) COLLATE utf8_unicode_ci  DEFAULT NULL,
+ `date_of_contact` datetime DEFAULT NULL,
+ PRIMARY KEY (`id`)
+);
+mysql > describe hireart;
+### step 3 :
+mysql > load data local infile "/home/kelwyj/Downloads/HireArt.csv" into table test1.hireart fields terminated by ' ' lines terminated by '\n' ignore 1 lines (account_manager,client_name,@datevar) set date_of_contact=STR_TO_DATE(@datevar,'%Y-%m-%d');Ctrl-C -- exit!
