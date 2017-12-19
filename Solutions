@@ -39,7 +39,10 @@ result:
 | Milan Crona     |                 65 |                     11 |
 | Aidan Pouros    |                 76 |                     12 |
 +-----------------+--------------------+------------------------+
-mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv from hireart group by monthv order by count DESC)t1,(select count(client_name)as sumclient from hireart)t2 ;
+mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent 
+from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv 
+     from hireart group by monthv order by count DESC)t1,
+     (select count(client_name)as sumclient from hireart)t2 ;
 +--------+---------+
 | monthv | percent |
 +--------+---------+
@@ -56,7 +59,10 @@ mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent from (select acco
 |      3 |  5.8000 |
 |      4 |  5.2000 |
 
-mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv from hireart group by monthv order by count DESC)t1,(select count(client_name)as sumclient from hireart)t2 order by percent DESC limit 1;
+mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent 
+       from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv 
+             from hireart group by monthv order by count DESC)t1,
+             (select count(client_name)as sumclient from hireart)t2 order by percent DESC limit 1;
 +--------+---------+
 | monthv | percent |
 +--------+---------+
