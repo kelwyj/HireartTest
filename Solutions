@@ -37,4 +37,29 @@ result:
 | Milan Crona     |                 65 |                     11 |
 | Aidan Pouros    |                 76 |                     12 |
 +-----------------+--------------------+------------------------+
-mysql >
+mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv from hireart group by monthv order by count DESC)t1,(select count(client_name)as sumclient from hireart)t2 ;
++--------+---------+
+| monthv | percent |
++--------+---------+
+|     10 | 21.3000 |
+|      9 | 12.1000 |
+|      8 |  7.9000 |
+|      6 |  7.7000 |
+|     12 |  7.6000 |
+|      5 |  6.9000 |
+|      7 |  6.6000 |
+|     11 |  6.5000 |
+|      2 |  6.4000 |
+|      1 |  6.0000 |
+|      3 |  5.8000 |
+|      4 |  5.2000 |
+
+mysql> select t1.monthv,(t1.count)*100/t2.sumclient as percent from (select account_manager,count(client_name) as count,month(date_of_contact) as monthv from hireart group by monthv order by count DESC)t1,(select count(client_name)as sumclient from hireart)t2 order by percent DESC limit 1;
++--------+---------+
+| monthv | percent |
++--------+---------+
+|     10 | 21.3000 |
+
++--------+---------+
+
+
