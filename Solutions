@@ -16,7 +16,7 @@ mysql > CREATE TABLE hireart (
 mysql > describe hireart;
 
 ### step 3 : input excel file to database mysql
-mysql > load data local infile "/home/kelwyj/Downloads/HireArt.csv" into table test1.hireart fields terminated by ' ' lines terminated by '\n' ignore 1 lines (account_manager,client_name,@datevar) set date_of_contact=STR_TO_DATE(@datevar,'%Y-%m-%d');Ctrl-C -- exit!
+mysql > load data local infile "/home/kelwyj/Downloads/HireArt.csv" into table hireart.hireart fields terminated by ' ' lines terminated by '\n' ignore 1 lines (account_manager,client_name,@datevar) set date_of_contact=STR_TO_DATE(@datevar,'%Y-%m-%d');Ctrl-C -- exit!
 
 ### step 4: sql 
 mysql >select account_manager,count(client_name),month(date_of_contact) from hireart group by month(date_of_contact);
